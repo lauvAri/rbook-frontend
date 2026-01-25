@@ -1,0 +1,7 @@
+services:
+  frontend:
+    build: .
+    ports:
+      - "80:80"
+    environment:
+      - API_BACKEND=localhost:8080

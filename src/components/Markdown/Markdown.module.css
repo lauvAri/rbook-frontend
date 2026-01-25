@@ -1,0 +1,104 @@
+/**
+ * Markdown 组件样式
+ */
+
+.markdown {
+  line-height: 1.7;
+  color: var(--fg);
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.markdown h1 {
+  font-size: 1.75rem;
+}
+
+.markdown h2 {
+  font-size: 1.5rem;
+}
+
+.markdown h3 {
+  font-size: 1.25rem;
+}
+
+.markdown p {
+  margin: 0.75em 0;
+}
+
+.markdown ul,
+.markdown ol {
+  margin: 0.75em 0;
+  padding-left: 1.5em;
+}
+
+.markdown li {
+  margin: 0.25em 0;
+}
+
+.markdown code {
+   background-color: var(--bg);
+  border-radius: 4px;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+.markdown pre {
+   background-color: var(--bg);
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.markdown pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+.markdown blockquote {
+  margin: 1em 0;
+  padding: 0.5em 1em;
+   border-left: 4px solid var(--primary);
+   background-color: var(--bg);
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+
+.markdown th,
+.markdown td {
+  padding: 0.5em;
+   border: 1px solid var(--border);
+}
+
+.markdown th {
+   background-color: var(--bg);
+}
+
+.markdown img {
+  max-width: 100%;
+  height: auto;
+}
+
+.markdown a {
+   color: var(--primary);
+}
+
+.markdown a:hover {
+  text-decoration: underline;
+}
+
+/* KaTeX 数学公式样式调整 */
+.markdown .katex-display {
+  margin: 1em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}

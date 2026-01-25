@@ -1,0 +1,15 @@
+/**
+ * 新建脚本页面样式
+ */
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--fg-strong);
+  margin: 0 0 1.5rem 0;
+}

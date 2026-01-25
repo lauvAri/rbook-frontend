@@ -1,0 +1,257 @@
+/**
+ * 首页样式
+ */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  padding: 0 1.5rem;
+}
+
+.header {
+  text-align: center;
+  padding: 3rem 1.5rem 5rem;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  margin-top: -1.5rem;
+  background-image: linear-gradient(
+      to bottom,
+      var(--hero-overlay-start),
+      var(--hero-overlay-end)
+    ),
+    url('/bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--on-primary);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--on-primary);
+  z-index: 1;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+/* 主内容区域 */
+.mainContent {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: -2.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* 左侧章节导航 */
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  padding: 1rem;
+  height: fit-content;
+  position: sticky;
+  top: 1.5rem;
+}
+
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.sidebarTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--fg);
+  margin: 0;
+}
+
+.closeBtn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.chapterNav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.chapterItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.75rem;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  width: 100%;
+}
+
+.chapterItem:hover {
+  background-color: var(--hover);
+}
+
+.chapterItemActive {
+  background-color: var(--hover-strong);
+  color: var(--primary);
+}
+
+.chapterItemActive:hover {
+  background-color: var(--hover-strong);
+}
+
+.chapterIcon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.chapterName {
+  flex: 1;
+  font-size: 0.9rem;
+  color: var(--fg);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chapterItemActive .chapterName {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.chapterCount {
+  font-size: 0.75rem;
+  color: var(--muted);
+  background: var(--bg);
+  padding: 0.15rem 0.4rem;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.chapterItemActive .chapterCount {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+/* 右侧列表区域 */
+.listWrapper {
+  flex: 1;
+  min-width: 0;
+}
+
+/* 移动端章节按钮 */
+.mobileChapterBtn {
+  display: none;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: var(--fg);
+  cursor: pointer;
+  text-align: left;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.mobileChapterBtn:hover {
+  border-color: var(--primary);
+}
+
+/* 遮罩层 */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .header {
+    padding: 2rem 1rem 4rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .mainContent {
+    flex-direction: column;
+    margin-top: -2rem;
+  }
+
+  /* 移动端按钮显示 */
+  .mobileChapterBtn {
+    display: block;
+  }
+
+  /* 遮罩层显示 */
+  .overlay {
+    display: block;
+  }
+
+  /* 侧边栏滑窗 */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    max-width: 80vw;
+    border-radius: 0;
+    z-index: 101;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    padding: 1rem;
+  }
+
+  .sidebarOpen {
+    transform: translateX(0);
+  }
+
+  .sidebarHeader {
+    margin-top: 0.5rem;
+  }
+
+  .closeBtn {
+    display: block;
+  }
+}

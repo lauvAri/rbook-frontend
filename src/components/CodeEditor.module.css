@@ -1,0 +1,18 @@
+.fullScreenWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1200;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0 0 0;
+}
+
+.fullScreenWrapper .monaco-editor,
+.fullScreenWrapper .monaco-editor-background {
+  height: 100% !important;
+  min-height: 0 !important;
+}

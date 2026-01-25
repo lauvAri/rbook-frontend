@@ -1,0 +1,45 @@
+/**
+ * 编辑脚本页面样式
+ */
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--fg-strong);
+  margin: 0 0 1.5rem 0;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 3rem;
+  color: var(--fg-dim);
+}
+
+.error {
+  color: var(--danger);
+}
+
+/* 返回导航 */
+.backNav {
+  margin-bottom: 1rem;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.backLink:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}

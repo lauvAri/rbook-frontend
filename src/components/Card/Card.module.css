@@ -1,0 +1,60 @@
+.card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.default {
+  border: 1px solid var(--border-subtle);
+}
+
+.outlined {
+  border: 2px solid var(--primary);
+}
+
+.elevated {
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.padding-none {
+  padding: 0;
+}
+
+.padding-sm {
+  padding: 12px;
+}
+
+.padding-md {
+  padding: 16px;
+}
+
+.padding-lg {
+  padding: 24px;
+}
+
+.header {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 12px;
+}
+
+.content {
+  /* 内容区域 */
+}
+
+.footer {
+  padding-top: 12px;
+  border-top: 1px solid var(--border-subtle);
+  margin-top: 12px;
+}
+
+@media (max-width: 768px) {
+  .padding-md {
+    padding: 12px;
+  }
+
+  .padding-lg {
+    padding: 16px;
+  }
+}

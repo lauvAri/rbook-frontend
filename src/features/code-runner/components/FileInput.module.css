@@ -1,0 +1,116 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--fg);
+}
+
+.tabs {
+  display: flex;
+  background-color: var(--surface);
+  border-radius: 6px;
+  padding: 3px;
+}
+
+.tab {
+  padding: 6px 14px;
+  border: none;
+  background-color: transparent;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--fg-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab:hover {
+  color: var(--fg);
+}
+
+.tab.active {
+  background-color: var(--card-bg);
+  color: var(--primary);
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.description {
+  font-size: 13px;
+  color: var(--fg-muted);
+  margin: 0;
+  padding: 10px 14px;
+  background-color: rgba(var(--accent-rgb), 0.15);
+  border-radius: 6px;
+  border-left: 3px solid var(--accent);
+}
+
+.exampleSection {
+  background-color: var(--surface-alt);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+}
+
+.exampleHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.exampleTitle {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg);
+}
+
+.useExampleBtn {
+  padding: 4px 12px;
+  border: none;
+  background-color: var(--primary);
+  color: var(--on-primary);
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.useExampleBtn:hover {
+  background-color: var(--primary-active);
+}
+
+.exampleData {
+  margin: 0;
+  padding: 12px 14px;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--fg);
+  white-space: pre;
+  overflow-x: auto;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

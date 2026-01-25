@@ -1,0 +1,221 @@
+/* 波浪动画容器，移动端隐藏 */
+.waveWrapper {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .waveWrapper {
+    display: none;
+  }
+}
+/**
+ * 登录页面样式
+ * 左右布局：左边背景图，右边登录框
+ */
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg);
+  padding: 1rem;
+}
+
+.loginCard {
+  display: flex;
+  width: 100%;
+  max-width: 900px;
+  min-height: 500px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  background: var(--card-bg);
+}
+
+/* 左侧背景图区域 */
+.bgSection {
+  flex: 1;
+  background-image: url('/bg.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem;
+}
+
+.bgOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(var(--primary-rgb), 0.1) 0%,
+    rgba(var(--primary-rgb), 0.6) 100%
+  );
+}
+
+.bgContent {
+  position: relative;
+  z-index: 1;
+  color: var(--on-primary);
+}
+
+.bgTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.bgSubtitle {
+  font-size: 0.95rem;
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* 右侧登录表单区域 */
+.formSection {
+  flex: 1;
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--fg);
+  margin: 0 0 0.5rem 0;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--fg);
+}
+
+.captchaRow {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.captchaInput {
+  flex: 1;
+}
+
+.captchaImage {
+  width: 120px;
+  height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg);
+  transition: border-color 0.2s;
+}
+
+.captchaImage:hover {
+  border-color: var(--primary);
+}
+
+.captchaImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.captchaLoading,
+.captchaError {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.captchaHint {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.error {
+  background-color: rgba(231, 76, 60, 0.08);
+  border: 1px solid var(--danger);
+  color: var(--danger);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .container {
+    padding: 0;
+    background-color: var(--bg);
+  }
+
+  .loginCard {
+    flex-direction: column;
+    max-width: 100%;
+    min-height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .bgSection {
+    flex: none;
+    height: 200px;
+    padding: 1.5rem;
+  }
+
+  .bgTitle {
+    font-size: 1.5rem;
+  }
+
+  .formSection {
+    flex: 1;
+    padding: 2rem 1.5rem;
+  }
+
+  .captchaRow {
+    flex-direction: column;
+  }
+
+  .captchaImage {
+    width: 100%;
+    height: 48px;
+  }
+}

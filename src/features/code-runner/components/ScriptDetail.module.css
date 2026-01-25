@@ -1,0 +1,130 @@
+/**
+ * ScriptDetail 组件样式
+ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.backNav {
+  margin-bottom: 0.5rem;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.backLink:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+.infoCard {
+  background: linear-gradient(135deg, var(--surface-alt) 0%, var(--card-bg) 100%);
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--fg-strong);
+  margin: 0 0 0.75rem 0;
+}
+
+.badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  background-color: var(--primary-soft);
+  color: var(--primary);
+  border-radius: 4px;
+}
+
+.description {
+  color: var(--fg-muted);
+  line-height: 1.7;
+}
+
+.sectionTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--fg-strong);
+  margin: 0;
+}
+
+.codeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  user-select: none;
+  transition: opacity 0.2s;
+}
+
+.codeHeader:hover {
+  opacity: 0.8;
+}
+
+.codeTitleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rLogo {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.expandIcon {
+  font-size: 0.875rem;
+  color: var(--fg-dim);
+  transition: transform 0.2s;
+}
+
+.codeBlock {
+  background-color: var(--code-bg);
+  color: var(--code-fg);
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.codeBlock code {
+  font-family: inherit;
+}
+
+.executeSection {
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .codeBlock {
+    font-size: 0.8rem;
+    padding: 0.75rem;
+  }
+}

@@ -1,0 +1,194 @@
+/* 亮色/暗色主题变量 */
+.theme-light {
+  --bg: #f8f9fa;
+  --fg: #2d3436;
+  --fg-strong: #2d3436;
+  --fg-dim: #666;
+  --fg-muted: #636e72;
+  --fg-subtle: #999;
+  --fg-placeholder: #b2bec3;
+  --fg-inverse: #ffffff;
+  --card-bg: #fff;
+  --surface: #f5f5f5;
+  --surface-alt: #f8f9fa;
+  --surface-soft: #f9f9f9;
+  --border: #e0e0e0;
+  --border-subtle: #e8e8e8;
+  --border-strong: #dfe6e9;
+  --primary: #0984e3;
+  --primary-hover: #74b9ff;
+  --primary-active: #0662ab;
+  --primary-rgb: 9 132 227;
+  --primary-soft: rgba(9, 132, 227, 0.08);
+  --primary-soft-strong: rgba(9, 132, 227, 0.15);
+  --primary-soft-subtle: rgba(9, 132, 227, 0.04);
+  --accent: #fdcb6e;
+  --accent-hover: #f9bf43;
+  --accent-active: #f5b31a;
+  --accent-rgb: 253 203 110;
+  --accent-soft: #fef3cd;
+  --accent-ink: #856404;
+  --sidebar-bg: #f4f6fb;
+  --muted: #636e72;
+  --danger: #e74c3c;
+  --danger-hover: #d63a2a;
+  --danger-active: #c53a2a;
+  --danger-rgb: 231 76 60;
+  --danger-soft: rgba(231, 76, 60, 0.08);
+  --danger-border: rgba(231, 76, 60, 0.3);
+  --hover: rgba(9, 132, 227, 0.08);
+  --hover-strong: rgba(9, 132, 227, 0.15);
+  --hero-overlay-start: rgba(255, 255, 255, 0);
+  --hero-overlay-end: rgba(255, 255, 255, 0.65);
+  --code-bg: #1e1e1e;
+  --code-fg: #d4d4d4;
+  --terminal-bg: #2d3436;
+  --terminal-fg: #dfe6e9;
+  --on-primary: #ffffff;
+  --on-primary-muted: rgba(255, 255, 255, 0.9);
+  --scrollbar-track: #f1f1f1;
+  --scrollbar-thumb: #c1c1c1;
+  --scrollbar-thumb-hover: #a1a1a1;
+  --warning-soft: #fef3c7;
+  --warning-ink: #d97706;
+  --success: #059669;
+  --success-soft: #d1fae5;
+  --success-bg: #f0fdf4;
+}
+
+.theme-dark {
+  --bg: #23272f;
+  --fg: #eaeaea;
+  --fg-strong: #f2f4f8;
+  --fg-dim: #b1b7c0;
+  --fg-muted: #9aa2ad;
+  --fg-subtle: #7c838d;
+  --fg-placeholder: #6b737d;
+  --fg-inverse: #ffffff;
+  --card-bg: #2b313a;
+  --surface: #20242b;
+  --surface-alt: #262b33;
+  --surface-soft: #2a303a;
+  --border: #333a44;
+  --border-subtle: #3a424e;
+  --border-strong: #444d5a;
+  --primary: #74b9ff;
+  --primary-hover: #0984e3;
+  --primary-active: #0070c9;
+  --primary-rgb: 116 185 255;
+  --primary-soft: rgba(116, 185, 255, 0.12);
+  --primary-soft-strong: rgba(116, 185, 255, 0.2);
+  --primary-soft-subtle: rgba(116, 185, 255, 0.06);
+  --accent: #fdcb6e;
+  --accent-hover: #f3b84a;
+  --accent-active: #eaa634;
+  --accent-rgb: 253 203 110;
+  --accent-soft: rgba(253, 203, 110, 0.18);
+  --accent-ink: #fdcb6e;
+  --sidebar-bg: #181b20;
+  --muted: #9aa2ad;
+  --danger: #ff6b6b;
+  --danger-hover: #ff5252;
+  --danger-active: #e64545;
+  --danger-rgb: 255 107 107;
+  --danger-soft: rgba(255, 107, 107, 0.12);
+  --danger-border: rgba(255, 107, 107, 0.35);
+  --hover: rgba(116, 185, 255, 0.12);
+  --hover-strong: rgba(116, 185, 255, 0.2);
+  --hero-overlay-start: rgba(0, 0, 0, 0);
+  --hero-overlay-end: rgba(0, 0, 0, 0.5);
+  --code-bg: #15181c;
+  --code-fg: #e6e6e6;
+  --terminal-bg: #14171b;
+  --terminal-fg: #e6edf3;
+  --on-primary: #ffffff;
+  --on-primary-muted: rgba(255, 255, 255, 0.9);
+  --scrollbar-track: #1c1f26;
+  --scrollbar-thumb: #3a424e;
+  --scrollbar-thumb-hover: #4a5463;
+  --warning-soft: rgba(253, 203, 110, 0.2);
+  --warning-ink: #f3c063;
+  --success: #34d399;
+  --success-soft: rgba(52, 211, 153, 0.2);
+  --success-bg: rgba(52, 211, 153, 0.12);
+}
+
+body.theme-light {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+body.theme-dark {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* 组件可根据变量覆盖色彩 */
+/**
+ * 全局样式重置
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans SC', sans-serif;
+  line-height: 1.5;
+  color: var(--fg);
+  background: var(--bg);
+}
+
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}

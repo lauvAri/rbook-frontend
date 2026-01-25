@@ -1,0 +1,117 @@
+/**
+ * 脚本管理列表页样式
+ */
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--fg-strong);
+  margin: 0;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 3rem;
+  color: var(--fg-dim);
+}
+
+.error {
+  color: var(--danger);
+}
+
+.empty {
+  text-align: center;
+  padding: 3rem;
+  color: var(--fg-dim);
+}
+
+.empty p {
+  margin-bottom: 1rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card {
+  padding: 1.25rem;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.scriptName {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--fg-strong);
+  margin: 0;
+}
+
+.badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--primary-soft);
+  color: var(--primary);
+  border-radius: 4px;
+}
+
+.description {
+  color: var(--fg-dim);
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.scriptId {
+  font-size: 0.8rem;
+  color: var(--fg-subtle);
+  font-family: monospace;
+  margin-bottom: 1rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* 分页控件 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 1rem 0;
+}
+
+.pageInfo {
+  font-size: 0.9rem;
+  color: var(--fg-dim);
+  min-width: 80px;
+  text-align: center;
+}
