@@ -17,6 +17,7 @@ import { ScriptDetailPage } from './routes/scripts.$scriptId';
 import { AdminScriptsPage } from './routes/admin/scripts/index';
 import { NewScriptPage } from './routes/admin/scripts/new';
 import { EditScriptPage } from './routes/admin/scripts/$scriptId.edit';
+import { AdminChaptersPage } from './routes/admin/chapters/index';
 import { UsersPage } from './routes/admin/users/index';
 import { UserLogsPage } from './routes/admin/users/logs';
 import ChangePasswordPage from './routes/change-password';
@@ -91,6 +92,12 @@ const adminScriptsEditRoute = createRoute({
   },
 });
 
+const adminChaptersRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/admin/chapters',
+  component: AdminChaptersPage,
+});
+
 // 用户管理路由
 const adminUsersRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -112,6 +119,7 @@ const routeTree = rootRoute.addChildren([
   adminScriptsRoute,
   adminScriptsNewRoute,
   adminScriptsEditRoute,
+  adminChaptersRoute,
   adminUsersRoute,
   adminUsersLogsRoute,
   changePasswordRoute,

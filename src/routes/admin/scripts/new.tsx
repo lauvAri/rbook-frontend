@@ -3,7 +3,7 @@
  */
 
 import { useNavigate } from '@tanstack/react-router';
-import { useCreateScript } from '@/features/code-runner/hooks';
+import { useChapters, useCreateScript } from '@/features/code-runner/hooks';
 import { ScriptForm } from '@/features/code-runner/components';
 import type { CreateScriptRequest } from '@/features/code-runner/types';
 import styles from './new.module.css';
@@ -11,6 +11,13 @@ import styles from './new.module.css';
 export function NewScriptPage() {
   const navigate = useNavigate();
   const createMutation = useCreateScript();
+  const { data: chapters } = useChapters();
+
+  const chapterOptions = chapters
+    ? [...chapters]
+        .sort((a, b) => a.sortOrder - b.sortOrder)
+        .map((ch) => ch.name)
+    : [];
 
   const handleSubmit = (data: CreateScriptRequest) => {
     createMutation.mutate(data, {
@@ -32,6 +39,7 @@ export function NewScriptPage() {
         onCancel={handleCancel}
         isSubmitting={createMutation.isPending}
         error={createMutation.error?.message}
+        chapterOptions={chapterOptions}
       />
     </div>
   );

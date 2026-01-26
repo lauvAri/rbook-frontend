@@ -51,6 +51,15 @@
 | 更新脚本 | PUT | `/code-runner/admin/scripts/{id}` | 更新脚本信息 |
 | 删除脚本 | DELETE | `/code-runner/admin/scripts/{id}` | 删除脚本（逻辑删除） |
 
+### 章节管理接口
+
+| 接口 | 方法 | 路径 | 描述 |
+|------|------|------|------|
+| 获取章节列表（管理端） | GET | `/code-runner/admin/chapters` | 获取章节列表（含排序与脚本数量） |
+| 创建章节 | POST | `/code-runner/admin/chapters` | 创建新章节 |
+| 更新章节 | PUT | `/code-runner/admin/chapters/{id}` | 更新章节信息 |
+| 删除章节 | DELETE | `/code-runner/admin/chapters/{id}` | 删除章节（逻辑删除） |
+
 ---
 
 ## 验证码接口
@@ -601,10 +610,12 @@ GET /api/code-runner/chapters
   "data": [
     {
       "name": "第一章 描述性统计",
+      "sortOrder": 1,
       "scriptCount": 5
     },
     {
       "name": "第二章 回归分析",
+      "sortOrder": 2,
       "scriptCount": 3
     }
   ]
@@ -1065,6 +1076,125 @@ DELETE /api/code-runner/admin/scripts/{id}
 
 ---
 
+## 章节管理接口
+
+### 1. 获取章节列表（管理端）
+
+获取所有章节（含排序和脚本数量）。
+
+**请求**
+
+```
+GET /api/code-runner/admin/chapters
+```
+
+**响应**
+
+```json
+{
+  "code": 0,
+  "message": "success",
+  "data": [
+    {
+      "id": 1,
+      "name": "第一章 描述性统计",
+      "sortOrder": 1,
+      "scriptCount": 5
+    }
+  ]
+}
+```
+
+---
+
+### 2. 创建章节
+
+**请求**
+
+```
+POST /api/code-runner/admin/chapters
+```
+
+**请求体**
+
+```json
+{
+  "name": "第四章 方差分析",
+  "sortOrder": 4
+}
+```
+
+**响应**
+
+```json
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "id": 4,
+    "name": "第四章 方差分析",
+    "sortOrder": 4,
+    "scriptCount": 0
+  }
+}
+```
+
+---
+
+### 3. 更新章节
+
+**请求**
+
+```
+PUT /api/code-runner/admin/chapters/{id}
+```
+
+**请求体**
+
+```json
+{
+  "name": "第四章 方差分析（更新）",
+  "sortOrder": 5
+}
+```
+
+**响应**
+
+```json
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "id": 4,
+    "name": "第四章 方差分析（更新）",
+    "sortOrder": 5,
+    "scriptCount": 0
+  }
+}
+```
+
+---
+
+### 4. 删除章节
+
+**请求**
+
+```
+DELETE /api/code-runner/admin/chapters/{id}
+```
+
+**响应**
+
+```json
+{
+  "code": 0,
+  "message": "success",
+  "data": null
+}
+```
+
+---
+
 ## 数据类型定义
 
 ### ScriptDefinitionDTO
@@ -1114,6 +1244,19 @@ DELETE /api/code-runner/admin/scripts/{id}
 | data | string | Base64 编码的图片数据 |
 | format | string | 图片格式：`"png"` / `"jpeg"` |
 | caption | string | 图片说明文字 |
+
+---
+
+### ChapterAdminDTO
+
+章节管理对象。
+
+| 字段 | 类型 | 描述 |
+|------|------|------|
+| id | number | 章节 ID |
+| name | string | 章节名称 |
+| sortOrder | integer | 排序顺序 |
+| scriptCount | integer | 章节下脚本数量 |
 
 ---
 
@@ -1254,3 +1397,7 @@ POST /api/code-runner/execute
 - `POST /api/code-runner/admin/scripts` - 创建脚本
 - `PUT /api/code-runner/admin/scripts/{id}` - 更新脚本
 - `DELETE /api/code-runner/admin/scripts/{id}` - 删除脚本
+- `GET /api/code-runner/admin/chapters` - 获取章节列表（管理端）
+- `POST /api/code-runner/admin/chapters` - 创建章节
+- `PUT /api/code-runner/admin/chapters/{id}` - 更新章节
+- `DELETE /api/code-runner/admin/chapters/{id}` - 删除章节

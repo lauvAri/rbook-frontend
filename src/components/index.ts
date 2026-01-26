@@ -8,3 +8,4 @@ export { Input } from './Input';
 export { TextArea } from './TextArea';
 export { FileUpload } from './FileUpload';
 export { Markdown } from './Markdown';
+export { SearchableSelect } from './SearchableSelect';

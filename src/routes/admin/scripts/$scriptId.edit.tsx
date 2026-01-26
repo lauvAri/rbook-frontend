@@ -3,7 +3,7 @@
  */
 
 import { Link, useNavigate, useParams, useSearch } from '@tanstack/react-router';
-import { useAdminScript, useUpdateScript } from '@/features/code-runner/hooks';
+import { useChapters, useAdminScript, useUpdateScript } from '@/features/code-runner/hooks';
 import { ScriptForm } from '@/features/code-runner/components';
 import type { UpdateScriptRequest } from '@/features/code-runner/types';
 import styles from './edit.module.css';
@@ -14,6 +14,13 @@ export function EditScriptPage() {
   const navigate = useNavigate();
   const { data: script, isLoading, error } = useAdminScript(scriptId);
   const updateMutation = useUpdateScript();
+  const { data: chapters } = useChapters();
+
+  const chapterOptions = chapters
+    ? [...chapters]
+        .sort((a, b) => a.sortOrder - b.sortOrder)
+        .map((ch) => ch.name)
+    : [];
 
   const handleSubmit = (data: UpdateScriptRequest) => {
     updateMutation.mutate(
@@ -64,6 +71,7 @@ export function EditScriptPage() {
         onCancel={handleCancel}
         isSubmitting={updateMutation.isPending}
         error={updateMutation.error?.message}
+        chapterOptions={chapterOptions}
       />
     </div>
   );

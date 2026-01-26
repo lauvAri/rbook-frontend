@@ -1,0 +1,45 @@
+/**
+ * SearchableSelect 样式
+ */
+
+.wrapper {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  z-index: 20;
+  left: 0;
+  right: 0;
+  margin-top: 0.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 0.35rem;
+}
+
+.option {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  padding: 0.5rem 0.6rem;
+  border-radius: 8px;
+  color: var(--fg);
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.option:hover {
+  background: var(--primary-soft);
+  color: var(--fg-strong);
+}
+
+.empty {
+  padding: 0.5rem 0.6rem;
+  color: var(--fg-muted);
+  font-size: 0.9rem;
+}

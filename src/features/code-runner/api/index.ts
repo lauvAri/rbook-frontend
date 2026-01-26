@@ -3,7 +3,12 @@
  */
 
 import axiosInstance from '@/lib/axios';
-import type { CodeScript, ExecuteCodeRequest, ExecuteCodeResponse } from '../types';
+import type {
+  ChapterSummary,
+  CodeScript,
+  ExecuteCodeRequest,
+  ExecuteCodeResponse,
+} from '../types';
 
 /** API 响应结构 */
 interface ApiResponse<T> {
@@ -18,6 +23,12 @@ export const codeRunnerApi = {
   /** 获取所有可用脚本 */
   getScripts: async (): Promise<CodeScript[]> => {
     const response = await axiosInstance.get<ApiResponse<CodeScript[]>>(`${BASE_PATH}/scripts`);
+    return response.data.data;
+  },
+
+  /** 获取章节列表（用户端） */
+  getChapters: async (): Promise<ChapterSummary[]> => {
+    const response = await axiosInstance.get<ApiResponse<ChapterSummary[]>>(`${BASE_PATH}/chapters`);
     return response.data.data;
   },
 
@@ -38,4 +49,4 @@ export const codeRunnerApi = {
   },
 };
 
-export type { CodeScript, ExecuteCodeRequest, ExecuteCodeResponse };
+export type { ChapterSummary, CodeScript, ExecuteCodeRequest, ExecuteCodeResponse };

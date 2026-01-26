@@ -40,6 +40,13 @@ export interface CodeScript {
   scriptContent?: string;
 }
 
+/** 章节摘要（用户端） */
+export interface ChapterSummary {
+  name: string;
+  sortOrder: number;
+  scriptCount: number;
+}
+
 /** 代码执行请求 */
 export interface ExecuteCodeRequest {
   scriptId: string;

@@ -1,0 +1,140 @@
+/**
+ * 章节管理页样式
+ */
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--fg-strong);
+  margin: 0 0 0.25rem 0;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--fg-muted);
+  font-size: 0.95rem;
+}
+
+.formCard {
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.formTitle {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  color: var(--fg-strong);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.formError {
+  color: var(--danger);
+  font-size: 0.9rem;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 2rem;
+  color: var(--fg-dim);
+}
+
+.error {
+  color: var(--danger);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.emptyCard {
+  padding: 2rem;
+  text-align: center;
+}
+
+.emptyText {
+  margin: 0;
+  color: var(--fg-dim);
+}
+
+.chapterCard {
+  padding: 1.1rem 1.25rem;
+}
+
+.chapterRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.chapterInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.chapterName {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--fg-strong);
+}
+
+.chapterMeta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  color: var(--fg-dim);
+  font-size: 0.9rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .formActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .actions {
+    width: 100%;
+    flex-direction: column;
+  }
+}

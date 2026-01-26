@@ -1,4 +1,4 @@
 1. 整体设计以移动端为主导，同时适应Web端
 2. 不要使用蓝紫渐变色，使用纯色，对于一些小组件，可以适当使用渐变色
-3. #0984e3 作为主题色 #fdcb6e 作为accent颜色
-4. 在 `src/components` 中封装项目公共组件，如Card，List等
+3. 在 `src/components` 中封装项目公共组件，如Card，List等
+4. 组件使用 `src/index.css` 中的颜色，对亮色/暗色切换要有较好的适配

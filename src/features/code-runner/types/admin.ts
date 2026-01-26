@@ -56,3 +56,23 @@ export interface UpdateScriptRequest {
   exampleData?: string;
   variables?: VariableDefinitionInput[];
 }
+
+/** 章节详情（管理端） */
+export interface AdminChapter {
+  id: number;
+  name: string;
+  sortOrder: number;
+  scriptCount: number;
+}
+
+/** 创建章节请求 */
+export interface CreateChapterRequest {
+  name: string;
+  sortOrder?: number;
+}
+
+/** 更新章节请求 */
+export interface UpdateChapterRequest {
+  name: string;
+  sortOrder?: number;
+}

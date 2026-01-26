@@ -4,8 +4,11 @@
 
 import axiosInstance from '@/lib/axios';
 import type {
+  AdminChapter,
   AdminScriptDetail,
+  CreateChapterRequest,
   CreateScriptRequest,
+  UpdateChapterRequest,
   UpdateScriptRequest,
 } from '../types/admin';
 
@@ -56,5 +59,36 @@ export const adminApi = {
   /** 删除脚本 */
   deleteScript: async (id: string): Promise<void> => {
     await axiosInstance.delete<ApiResponse<null>>(`${BASE_PATH}/scripts/${id}`);
+  },
+
+  /** 获取章节列表（管理端） */
+  getChapters: async (): Promise<AdminChapter[]> => {
+    const response = await axiosInstance.get<ApiResponse<AdminChapter[]>>(
+      `${BASE_PATH}/chapters`
+    );
+    return response.data.data;
+  },
+
+  /** 创建章节 */
+  createChapter: async (data: CreateChapterRequest): Promise<AdminChapter> => {
+    const response = await axiosInstance.post<ApiResponse<AdminChapter>>(
+      `${BASE_PATH}/chapters`,
+      data
+    );
+    return response.data.data;
+  },
+
+  /** 更新章节 */
+  updateChapter: async (id: number, data: UpdateChapterRequest): Promise<AdminChapter> => {
+    const response = await axiosInstance.put<ApiResponse<AdminChapter>>(
+      `${BASE_PATH}/chapters/${id}`,
+      data
+    );
+    return response.data.data;
+  },
+
+  /** 删除章节 */
+  deleteChapter: async (id: number): Promise<void> => {
+    await axiosInstance.delete<ApiResponse<null>>(`${BASE_PATH}/chapters/${id}`);
   },
 };

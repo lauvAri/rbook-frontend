@@ -33,6 +33,11 @@ export function RootLayout() {
               </Link>
             )}
             {isAdmin && (
+              <Link to="/admin/chapters" className={styles.navLink} activeProps={{ className: styles.active }}>
+                章节管理
+              </Link>
+            )}
+            {isAdmin && (
               <Link to="/admin/users" className={styles.navLink} activeProps={{ className: styles.active }}>
                 用户管理
               </Link>
@@ -69,4 +74,3 @@ export function RootLayout() {
     </div>
   );
 }
-

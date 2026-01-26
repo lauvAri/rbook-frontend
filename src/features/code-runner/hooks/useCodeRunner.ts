@@ -11,6 +11,7 @@ export const codeRunnerKeys = {
   all: ['code-runner'] as const,
   scripts: () => [...codeRunnerKeys.all, 'scripts'] as const,
   script: (id: string) => [...codeRunnerKeys.all, 'script', id] as const,
+  chapters: () => [...codeRunnerKeys.all, 'chapters'] as const,
 };
 
 /** 获取所有脚本列表 */
@@ -18,6 +19,14 @@ export function useScripts() {
   return useQuery({
     queryKey: codeRunnerKeys.scripts(),
     queryFn: () => codeRunnerApi.getScripts(),
+  });
+}
+
+/** 获取章节列表 */
+export function useChapters() {
+  return useQuery({
+    queryKey: codeRunnerKeys.chapters(),
+    queryFn: () => codeRunnerApi.getChapters(),
   });
 }
 

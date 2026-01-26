@@ -9,6 +9,7 @@ import { MdFullscreen, MdFullscreenExit } from 'react-icons/md';
 import { Card } from '@/components/Card';
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
+import { SearchableSelect } from '@/components/SearchableSelect';
 import { TextArea } from '@/components/TextArea';
 import type { AdminScriptDetail, CreateScriptRequest, VariableDefinitionInput } from '../types/admin';
 import styles from './ScriptForm.module.css';
@@ -48,6 +49,7 @@ interface ScriptFormProps {
   onCancel: () => void;
   isSubmitting?: boolean;
   error?: string;
+  chapterOptions?: string[];
 }
 
 const EMPTY_VARIABLE: VariableDefinitionInput = {
@@ -64,6 +66,7 @@ export function ScriptForm({
   onCancel,
   isSubmitting = false,
   error,
+  chapterOptions = [],
 }: ScriptFormProps) {
   const [codeFullScreen, setCodeFullScreen] = useState(false);
   const [formData, setFormData] = useState({
@@ -229,12 +232,12 @@ export function ScriptForm({
 
         <div className={styles.formGroup}>
           <label className={styles.label}>所属章节</label>
-          <Input
-            name="chapter"
+          <SearchableSelect
             value={formData.chapter}
-            onChange={handleInputChange}
-            placeholder="如：第一章、Chapter 1"
-            maxLength={50}
+            onChange={(value) => setFormData((prev) => ({ ...prev, chapter: value }))}
+            placeholder="搜索或选择章节"
+            options={chapterOptions}
+            disabled={chapterOptions.length === 0}
           />
         </div>
 
