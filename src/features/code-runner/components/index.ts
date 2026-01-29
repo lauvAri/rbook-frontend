@@ -11,3 +11,4 @@ export { ExecutionResult } from './ExecutionResult';
 export { ScriptForm } from './ScriptForm';
 export { ScriptList } from './ScriptList';
 export { ScriptDetail } from './ScriptDetail';
+export { ChapterNavigation } from './ChapterNavigation';

@@ -71,6 +71,7 @@ const adminScriptsRoute = createRoute({
   validateSearch: (search: Record<string, unknown>) => {
     return {
       page: Number(search.page) || 1,
+      chapter: search.chapter as string | undefined,
     };
   },
 });
@@ -79,6 +80,11 @@ const adminScriptsNewRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/admin/scripts/new',
   component: NewScriptPage,
+  validateSearch: (search: Record<string, unknown>) => {
+    return {
+      chapter: search.chapter as string | undefined,
+    };
+  },
 });
 
 const adminScriptsEditRoute = createRoute({
@@ -88,6 +94,7 @@ const adminScriptsEditRoute = createRoute({
   validateSearch: (search: Record<string, unknown>) => {
     return {
       fromPage: Number(search.fromPage) || 1,
+      chapter: search.chapter as string | undefined,
     };
   },
 });

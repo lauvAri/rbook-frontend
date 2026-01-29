@@ -10,7 +10,7 @@ import styles from './edit.module.css';
 
 export function EditScriptPage() {
   const { scriptId } = useParams({ from: '/admin/scripts/$scriptId/edit' });
-  const { fromPage } = useSearch({ from: '/admin/scripts/$scriptId/edit' });
+  const { fromPage, chapter } = useSearch({ from: '/admin/scripts/$scriptId/edit' });
   const navigate = useNavigate();
   const { data: script, isLoading, error } = useAdminScript(scriptId);
   const updateMutation = useUpdateScript();
@@ -27,14 +27,14 @@ export function EditScriptPage() {
       { id: scriptId, data },
       {
         onSuccess: () => {
-          navigate({ to: '/admin/scripts', search: { page: fromPage } });
+          navigate({ to: '/admin/scripts', search: { page: fromPage, chapter } });
         },
       }
     );
   };
 
   const handleCancel = () => {
-    navigate({ to: '/admin/scripts', search: { page: fromPage } });
+    navigate({ to: '/admin/scripts', search: { page: fromPage, chapter } });
   };
 
   if (isLoading) {
@@ -59,7 +59,7 @@ export function EditScriptPage() {
     <div className={styles.container}>
       {/* 返回按钮 */}
       <div className={styles.backNav}>
-        <Link to="/admin/scripts" search={{ page: fromPage }} className={styles.backLink}>
+        <Link to="/admin/scripts" search={{ page: fromPage, chapter }} className={styles.backLink}>
           ← 返回列表
         </Link>
       </div>

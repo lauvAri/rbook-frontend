@@ -2,7 +2,7 @@
  * 新建脚本页面
  */
 
-import { useNavigate } from '@tanstack/react-router';
+import { useNavigate, useSearch } from '@tanstack/react-router';
 import { useChapters, useCreateScript } from '@/features/code-runner/hooks';
 import { ScriptForm } from '@/features/code-runner/components';
 import type { CreateScriptRequest } from '@/features/code-runner/types';
@@ -10,6 +10,7 @@ import styles from './new.module.css';
 
 export function NewScriptPage() {
   const navigate = useNavigate();
+  const { chapter } = useSearch({ from: '/admin/scripts/new' });
   const createMutation = useCreateScript();
   const { data: chapters } = useChapters();
 
@@ -22,13 +23,13 @@ export function NewScriptPage() {
   const handleSubmit = (data: CreateScriptRequest) => {
     createMutation.mutate(data, {
       onSuccess: () => {
-        navigate({ to: '/admin/scripts', search: { page: 1 } });
+        navigate({ to: '/admin/scripts', search: { page: 1, chapter } });
       },
     });
   };
 
   const handleCancel = () => {
-    navigate({ to: '/admin/scripts', search: { page: 1 } });
+    navigate({ to: '/admin/scripts', search: { page: 1, chapter } });
   };
 
   return (

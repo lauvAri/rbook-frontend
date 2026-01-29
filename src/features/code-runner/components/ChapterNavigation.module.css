@@ -1,0 +1,175 @@
+/**
+ * 章节导航样式
+ */
+
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  padding: 1rem;
+  height: fit-content;
+  position: sticky;
+  top: 1.5rem;
+}
+
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.sidebarTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--fg);
+  margin: 0;
+}
+
+.closeBtn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.chapterNav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.chapterItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.75rem;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  width: 100%;
+}
+
+.chapterItem:hover {
+  background-color: var(--hover);
+}
+
+.chapterItemActive {
+  background-color: var(--hover-strong);
+  color: var(--primary);
+}
+
+.chapterItemActive:hover {
+  background-color: var(--hover-strong);
+}
+
+.chapterIcon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.chapterName {
+  flex: 1;
+  font-size: 0.9rem;
+  color: var(--fg);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chapterItemActive .chapterName {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.chapterCount {
+  font-size: 0.75rem;
+  color: var(--muted);
+  background: var(--bg);
+  padding: 0.15rem 0.4rem;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.chapterItemActive .chapterCount {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.mobileChapterBtn {
+  display: none;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: var(--fg);
+  cursor: pointer;
+  text-align: left;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.mobileChapterBtn:hover {
+  border-color: var(--primary);
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+
+@media (max-width: 768px) {
+  .mobileChapterBtn {
+    display: block;
+  }
+
+  .overlay {
+    display: block;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    max-width: 80vw;
+    border-radius: 0;
+    z-index: 101;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    padding: 1rem;
+  }
+
+  .sidebarOpen {
+    transform: translateX(0);
+  }
+
+  .sidebarHeader {
+    margin-top: 0.5rem;
+  }
+
+  .closeBtn {
+    display: block;
+  }
+}

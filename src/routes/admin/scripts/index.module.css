@@ -3,8 +3,9 @@
  */
 
 .container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 .header {
@@ -99,6 +100,18 @@
   gap: 0.75rem;
 }
 
+/* 主内容区域 */
+.mainContent {
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* 右侧列表区域 */
+.listWrapper {
+  flex: 1;
+  min-width: 0;
+}
+
 /* 分页控件 */
 .pagination {
   display: flex;
@@ -114,4 +127,15 @@
   color: var(--fg-dim);
   min-width: 80px;
   text-align: center;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .mainContent {
+    flex-direction: column;
+  }
 }
