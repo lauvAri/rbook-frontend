@@ -178,7 +178,7 @@ export async function executeCode(request: ExecuteCodeRequest): Promise<ExecuteC
       });
       break;
 
-    case 'linear-regression':
+    case 'linear-regression': {
       const sampleSize = request.variables?.sample_size ?? 100;
       const noiseLevel = request.variables?.noise_level ?? 0.5;
       outputs.push({
@@ -212,8 +212,9 @@ export async function executeCode(request: ExecuteCodeRequest): Promise<ExecuteC
         caption: '线性回归拟合图',
       });
       break;
+    }
 
-    case 'histogram':
+    case 'histogram': {
       const bins = request.variables?.bins ?? 20;
       const title = request.variables?.title ?? '数据分布直方图';
       outputs.push({
@@ -237,6 +238,7 @@ export async function executeCode(request: ExecuteCodeRequest): Promise<ExecuteC
         caption: title as string,
       });
       break;
+    }
 
     case 'correlation-matrix':
       outputs.push({

@@ -2,6 +2,8 @@
  * Input 组件
  */
 
+import { useId } from 'react';
+import type React from 'react';
 import styles from './Input.module.css';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -18,7 +20,8 @@ export function Input({
   id,
   ...props
 }: InputProps) {
-  const inputId = id || `input-${Math.random().toString(36).slice(2, 9)}`;
+  const reactId = useId();
+  const inputId = id ?? `input-${reactId}`;
 
   return (
     <div className={styles.wrapper}>

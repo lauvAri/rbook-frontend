@@ -28,7 +28,7 @@ export function RootLayout() {
               代码执行器
             </Link>
             {isAuthenticated && (
-              <Link to="/admin/scripts" search={{ page: 1 }} className={styles.navLink} activeProps={{ className: styles.active }}>
+              <Link to="/admin/scripts" search={{ page: 1, chapter: undefined }} className={styles.navLink} activeProps={{ className: styles.active }}>
                 脚本管理
               </Link>
             )}

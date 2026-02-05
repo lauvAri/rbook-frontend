@@ -2,7 +2,7 @@
  * 用户操作日志页面
  */
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useNavigate, Link } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
 import { Card, CardContent, Button } from '@/components';
@@ -25,30 +25,9 @@ export function UserLogsPage() {
   const navigate = useNavigate();
   const isAdmin = useIsAdmin();
   const isAuthenticated = useIsAuthenticated();
+  const canViewLogs = isAuthenticated && isAdmin;
   const [page, setPage] = useState(0);
   const pageSize = 20;
-
-  // 检查权限
-  if (!isAuthenticated) {
-    navigate({ to: '/login' });
-    return null;
-  }
-
-  if (!isAdmin) {
-    return (
-      <div className={styles.container}>
-        <Card>
-          <CardContent>
-            <div className={styles.noPermission}>
-              <h2>无权访问</h2>
-              <p>您没有权限访问日志页面</p>
-              <Button onClick={() => navigate({ to: '/', search: { page: 1, chapter: undefined } })}>返回首页</Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
 
   // 获取日志 - 每次进入页面都重新请求
   const { data, isLoading, refetch } = useQuery({
@@ -56,6 +35,7 @@ export function UserLogsPage() {
     queryFn: () => getAllLogs(page, pageSize),
     staleTime: 0, // 数据立即过期
     refetchOnMount: 'always', // 每次挂载组件时都重新请求
+    enabled: canViewLogs,
   });
 
   // 获取用户列表用于映射 userId -> username
@@ -63,6 +43,7 @@ export function UserLogsPage() {
     queryKey: ['users-for-logs'],
     queryFn: () => getUserList(),
     staleTime: 5 * 60 * 1000, // 5分钟缓存
+    enabled: canViewLogs,
   });
 
   // 获取脚本列表用于判断脚本是否存在
@@ -85,6 +66,33 @@ export function UserLogsPage() {
   const logs = data?.content || [];
   const totalPages = data?.totalPages || 0;
   const totalElements = data?.totalElements || 0;
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate({ to: '/login' });
+    }
+  }, [isAuthenticated, navigate]);
+
+  // 检查权限
+  if (!isAuthenticated) {
+    return null;
+  }
+
+  if (!isAdmin) {
+    return (
+      <div className={styles.container}>
+        <Card>
+          <CardContent>
+            <div className={styles.noPermission}>
+              <h2>无权访问</h2>
+              <p>您没有权限访问日志页面</p>
+              <Button onClick={() => navigate({ to: '/', search: { page: 1, chapter: undefined } })}>返回首页</Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>

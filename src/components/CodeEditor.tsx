@@ -1,4 +1,4 @@
-import { useRef, useCallback } from 'react';
+import { useCallback } from 'react';
 import MonacoEditor from '@monaco-editor/react';
 import { useThemeStore } from '@/stores/theme';
 import styles from './CodeEditor.module.css';
@@ -12,7 +12,6 @@ interface CodeEditorProps {
 }
 
 export function CodeEditor({ value, onChange, language = 'r', height = 400, fullScreen = false }: CodeEditorProps) {
-  const editorRef = useRef<any>(null);
   const theme = useThemeStore((s) => s.theme);
 
   const handleEditorChange = useCallback((val: string | undefined) => {

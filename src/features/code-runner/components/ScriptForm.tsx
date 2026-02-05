@@ -3,7 +3,8 @@
  * 用于创建和编辑脚本
  */
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
+import type React from 'react';
 import { CodeEditor } from '@/components/CodeEditor';
 import { MdFullscreen, MdFullscreenExit } from 'react-icons/md';
 import { Card } from '@/components/Card';
@@ -68,46 +69,54 @@ export function ScriptForm({
   error,
   chapterOptions = [],
 }: ScriptFormProps) {
+  const formKey = initialData?.id ?? 'new';
+  return (
+    <ScriptFormInner
+      key={formKey}
+      initialData={initialData}
+      onSubmit={onSubmit}
+      onCancel={onCancel}
+      isSubmitting={isSubmitting}
+      error={error}
+      chapterOptions={chapterOptions}
+    />
+  );
+}
+
+const getInitialFormData = (initialData?: AdminScriptDetail) => ({
+  name: initialData?.name || '',
+  description: initialData?.description || '',
+  chapter: initialData?.chapter || '',
+  scriptContent: initialData?.scriptContent || '',
+  supportsVariables: initialData?.supportsVariables || false,
+  supportsFileInput: initialData?.supportsFileInput || false,
+  fileInputDesc: initialData?.fileInputDesc || '',
+  exampleData: initialData?.exampleData || '',
+});
+
+const getInitialVariables = (initialData?: AdminScriptDetail): VariableDefinitionInput[] => {
+  if (!initialData?.variables) return [];
+  return initialData.variables.map((v, index) => ({
+    name: v.name,
+    label: v.label,
+    type: v.type.toUpperCase() as 'NUMBER' | 'STRING' | 'BOOLEAN',
+    defaultValue: String(v.defaultValue || ''),
+    description: v.description || '',
+    sortOrder: index + 1,
+  }));
+};
+
+function ScriptFormInner({
+  initialData,
+  onSubmit,
+  onCancel,
+  isSubmitting = false,
+  error,
+  chapterOptions = [],
+}: ScriptFormProps) {
   const [codeFullScreen, setCodeFullScreen] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    description: '',
-    chapter: '',
-    scriptContent: '',
-    supportsVariables: false,
-    supportsFileInput: false,
-    fileInputDesc: '',
-    exampleData: '',
-  });
-  const [variables, setVariables] = useState<VariableDefinitionInput[]>([]);
-
-  useEffect(() => {
-    if (initialData) {
-      setFormData({
-        name: initialData.name || '',
-        description: initialData.description || '',
-        chapter: initialData.chapter || '',
-        scriptContent: initialData.scriptContent || '',
-        supportsVariables: initialData.supportsVariables || false,
-        supportsFileInput: initialData.supportsFileInput || false,
-        fileInputDesc: initialData.fileInputDesc || '',
-        exampleData: initialData.exampleData || '',
-      });
-
-      if (initialData.variables) {
-        setVariables(
-          initialData.variables.map((v, index) => ({
-            name: v.name,
-            label: v.label,
-            type: v.type.toUpperCase() as 'NUMBER' | 'STRING' | 'BOOLEAN',
-            defaultValue: String(v.defaultValue || ''),
-            description: v.description || '',
-            sortOrder: index + 1,
-          }))
-        );
-      }
-    }
-  }, [initialData]);
+  const [formData, setFormData] = useState(() => getInitialFormData(initialData));
+  const [variables, setVariables] = useState<VariableDefinitionInput[]>(() => getInitialVariables(initialData));
 
   // 专用于 Monaco 编辑器的代码变更
   const handleScriptContentChange = (val: string) => {

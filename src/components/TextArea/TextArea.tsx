@@ -2,6 +2,8 @@
  * TextArea 组件
  */
 
+import { useId } from 'react';
+import type React from 'react';
 import styles from './TextArea.module.css';
 
 interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -18,7 +20,8 @@ export function TextArea({
   id,
   ...props
 }: TextAreaProps) {
-  const textareaId = id || `textarea-${Math.random().toString(36).slice(2, 9)}`;
+  const reactId = useId();
+  const textareaId = id ?? `textarea-${reactId}`;
 
   return (
     <div className={styles.wrapper}>

@@ -192,3 +192,14 @@ img {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--scrollbar-thumb-hover);
 }
+
+/* 备案信息 */
+#beian {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  font-size: 12px;
+  color: var(--fg-subtle);
+  text-decoration: none;
+  z-index: 1000;
+}

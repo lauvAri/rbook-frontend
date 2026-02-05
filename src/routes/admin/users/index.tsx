@@ -2,7 +2,7 @@
  * 用户管理页面
  */
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { MdGroup, MdFileUpload, MdAssignment, MdCheck, MdContentCopy } from 'react-icons/md';
 import { useNavigate } from '@tanstack/react-router';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
@@ -282,38 +282,18 @@ export function UsersPage() {
   const queryClient = useQueryClient();
   const isAdmin = useIsAdmin();
   const isAuthenticated = useIsAuthenticated();
+  const canManageUsers = isAuthenticated && isAdmin;
 
   const [showImportModal, setShowImportModal] = useState(false);
   const [importResult, setImportResult] = useState<BatchImportResponse | null>(null);
   const [resetResult, setResetResult] = useState<ResetPasswordResponse | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
 
-  // 检查权限
-  if (!isAuthenticated) {
-    navigate({ to: '/login' });
-    return null;
-  }
-
-  if (!isAdmin) {
-    return (
-      <div className={styles.container}>
-        <Card>
-          <CardContent>
-            <div className={styles.noPermission}>
-              <h2>无权访问</h2>
-              <p>您没有权限访问用户管理页面</p>
-              <Button onClick={() => navigate({ to: '/', search: { page: 1, chapter: undefined } })}>返回首页</Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
-
   // 获取用户列表
   const { data: users = [], isLoading } = useQuery({
     queryKey: ['users'],
     queryFn: getUserList,
+    enabled: canManageUsers,
   });
 
   // 删除用户
@@ -367,6 +347,33 @@ export function UsersPage() {
   // 统计数据
   const adminCount = users.filter((u) => u.userType === 'ADMIN').length;
   const workerCount = users.filter((u) => u.userType === 'WORKER').length;
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate({ to: '/login' });
+    }
+  }, [isAuthenticated, navigate]);
+
+  // 检查权限
+  if (!isAuthenticated) {
+    return null;
+  }
+
+  if (!isAdmin) {
+    return (
+      <div className={styles.container}>
+        <Card>
+          <CardContent>
+            <div className={styles.noPermission}>
+              <h2>无权访问</h2>
+              <p>您没有权限访问用户管理页面</p>
+              <Button onClick={() => navigate({ to: '/', search: { page: 1, chapter: undefined } })}>返回首页</Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import type React from 'react';
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import { Card, CardContent, Button, Input } from '@/components';
 import { useUser } from '@/features/user';
@@ -37,8 +38,14 @@ export default function ChangePasswordPage() {
       setOldPassword('');
       setNewPassword('');
       setConfirmPassword('');
-    } catch (err: any) {
-      setError(err?.response?.data?.message || '修改失败');
+    } catch (err: unknown) {
+      const message =
+        typeof err === 'object' && err !== null && 'response' in err
+          ? (err as { response?: { data?: { message?: string } } }).response?.data?.message
+          : err instanceof Error
+            ? err.message
+            : undefined;
+      setError(message || '修改失败');
     } finally {
       setLoading(false);
     }
