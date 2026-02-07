@@ -28,7 +28,7 @@ export function LoginPage() {
   // 如果已登录，跳转到首页
   useEffect(() => {
     if (isAuthenticated) {
-      navigate({ to: '/', search: { page: 1, chapter: undefined } });
+      navigate({ to: '/', search: { page: 1, chapter: undefined, search: undefined } });
     }
   }, [isAuthenticated, navigate]);
 
@@ -88,7 +88,7 @@ export function LoginPage() {
         captcha.captchaKey,
         formData.captchaCode.trim()
       );
-      navigate({ to: '/', search: { page: 1, chapter: undefined } });
+      navigate({ to: '/', search: { page: 1, chapter: undefined, search: undefined } });
     } catch (err: unknown) {
       const errorMessage =
         (err as { response?: { data?: { message?: string } } })?.response?.data?.message ||

@@ -42,6 +42,7 @@ const indexRoute = createRoute({
     return {
       page: Number(search.page) || 1,
       chapter: search.chapter as string | undefined,
+      search: search.search as string | undefined,
     };
   },
 });

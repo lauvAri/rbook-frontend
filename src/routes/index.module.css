@@ -57,6 +57,17 @@
   min-width: 0;
 }
 
+/* 搜索结果提示 */
+.searchInfo {
+  background: var(--card-bg);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--fg-dim);
+  margin-bottom: 1rem;
+  border-left: 3px solid var(--primary);
+}
+
 /* 移动端适配 */
 @media (max-width: 768px) {
   .container {

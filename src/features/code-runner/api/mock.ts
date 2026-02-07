@@ -40,14 +40,14 @@ export const mockScripts: CodeScript[] = [
       {
         name: 'sample_size',
         label: '样本数量',
-        type: 'number',
+        type: 'NUMBER',
         defaultValue: 100,
         description: '生成的样本数量（10-1000）',
       },
       {
         name: 'noise_level',
         label: '噪声水平',
-        type: 'number',
+        type: 'NUMBER',
         defaultValue: 0.5,
         description: '数据噪声水平（0-1）',
       },
@@ -72,14 +72,14 @@ export const mockScripts: CodeScript[] = [
       {
         name: 'bins',
         label: '分组数量',
-        type: 'number',
+        type: 'NUMBER',
         defaultValue: 20,
         description: '直方图的分组数量（5-50）',
       },
       {
         name: 'title',
         label: '图表标题',
-        type: 'string',
+        type: 'STRING',
         defaultValue: '数据分布直方图',
         description: '图表显示的标题',
       },

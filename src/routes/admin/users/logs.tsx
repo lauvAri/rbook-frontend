@@ -86,7 +86,7 @@ export function UserLogsPage() {
             <div className={styles.noPermission}>
               <h2>无权访问</h2>
               <p>您没有权限访问日志页面</p>
-              <Button onClick={() => navigate({ to: '/', search: { page: 1, chapter: undefined } })}>返回首页</Button>
+              <Button onClick={() => navigate({ to: '/', search: { page: 1, chapter: undefined, search: undefined } })}>返回首页</Button>
             </div>
           </CardContent>
         </Card>

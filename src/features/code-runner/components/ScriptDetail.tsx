@@ -67,10 +67,10 @@ export function ScriptDetail({ script, fromPage, fromChapter }: ScriptDetailProp
       typedVariables = {};
       for (const v of script.variables) {
         const value = variables[v.name];
-        if (v.type === 'number') {
+        if (v.type === 'NUMBER') {
           typedVariables[v.name] =
             typeof value === 'number' ? value : parseFloat(String(value)) || v.defaultValue;
-        } else if (v.type === 'boolean') {
+        } else if (v.type === 'BOOLEAN') {
           typedVariables[v.name] = typeof value === 'boolean' ? value : value === 'true';
         } else {
           typedVariables[v.name] = String(value ?? v.defaultValue);
@@ -106,7 +106,7 @@ export function ScriptDetail({ script, fromPage, fromChapter }: ScriptDetailProp
     <div className={styles.container}>
       {/* 返回按钮 */}
       <div className={styles.backNav}>
-        <Link to="/" search={{ page: fromPage ?? 1, chapter: fromChapter }} className={styles.backLink}>
+        <Link to="/" search={{ page: fromPage ?? 1, chapter: fromChapter, search: undefined }} className={styles.backLink}>
           ← 返回列表
         </Link>
       </div>

@@ -66,9 +66,9 @@ export function CodeRunner() {
       typedVariables = {};
       for (const v of selectedScript.variables) {
         const value = variables[v.name];
-        if (v.type === 'number') {
+        if (v.type === 'NUMBER') {
           typedVariables[v.name] = typeof value === 'number' ? value : parseFloat(String(value)) || v.defaultValue;
-        } else if (v.type === 'boolean') {
+        } else if (v.type === 'BOOLEAN') {
           typedVariables[v.name] = typeof value === 'boolean' ? value : value === 'true';
         } else {
           typedVariables[v.name] = String(value ?? v.defaultValue);

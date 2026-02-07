@@ -59,13 +59,13 @@ export function ScriptList({
   const handlePrevPage = () => {
     const newPage = Math.max(1, currentPage - 1);
     setCurrentPage(newPage);
-    navigate({ to: '/', search: { page: newPage, chapter: currentChapter || undefined } });
+    navigate({ to: '/', search: { page: newPage, chapter: currentChapter || undefined, search: undefined } });
   };
 
   const handleNextPage = () => {
     const newPage = Math.min(totalPages, currentPage + 1);
     setCurrentPage(newPage);
-    navigate({ to: '/', search: { page: newPage, chapter: currentChapter || undefined } });
+    navigate({ to: '/', search: { page: newPage, chapter: currentChapter || undefined, search: undefined } });
   };
 
   if (loading) {

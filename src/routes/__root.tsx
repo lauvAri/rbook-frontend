@@ -24,7 +24,7 @@ export function RootLayout() {
       <header className={styles.header}>
         <nav className={styles.nav}>
           <div className={styles.navLinks}>
-            <Link to="/" search={{ page: 1, chapter: undefined }} className={styles.navLink} activeProps={{ className: styles.active }}>
+            <Link to="/" search={{ page: 1, chapter: undefined, search: undefined }} className={styles.navLink} activeProps={{ className: styles.active }}>
               代码执行器
             </Link>
             {isAuthenticated && (

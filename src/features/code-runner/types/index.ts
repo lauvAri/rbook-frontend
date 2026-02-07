@@ -14,7 +14,7 @@ export interface RunOptions {
 export interface ReplacementVariable {
   name: string;
   label: string;
-  type: 'number' | 'string' | 'boolean';
+  type: 'NUMBER' | 'STRING' | 'BOOLEAN';
   defaultValue: string | number | boolean;
   description?: string;
 }
