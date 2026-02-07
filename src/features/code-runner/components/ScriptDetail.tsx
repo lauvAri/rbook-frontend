@@ -47,7 +47,16 @@ export function ScriptDetail({ script, fromPage, fromChapter }: ScriptDetailProp
   const handleOptionsChange = useCallback((options: RunOptions) => {
     setRunOptions(options);
     setResult(null);
-  }, []);
+
+    // 当关闭自定义参数时，重置变量为默认值
+    if (!options.useVariables && script.variables) {
+      const defaultValues: Record<string, string | number | boolean> = {};
+      script.variables.forEach((v) => {
+        defaultValues[v.name] = v.defaultValue;
+      });
+      setVariables(defaultValues);
+    }
+  }, [script.variables]);
 
   const handleVariableChange = useCallback(
     (name: string, value: string | number | boolean) => {

@@ -2,6 +2,7 @@
  * 变量表单组件
  */
 
+import { useState, useEffect, useRef } from 'react';
 import { Input, Select, type SelectOption } from '@/components';
 import type { ReplacementVariable } from '../types';
 import styles from './VariablesForm.module.css';
@@ -18,16 +19,74 @@ const BOOLEAN_OPTIONS: SelectOption[] = [
 ];
 
 export function VariablesForm({ variables, values, onChange }: VariablesFormProps) {
-  const handleInputChange = (variable: ReplacementVariable, inputValue: string) => {
-    let parsedValue: string | number | boolean = inputValue;
+  // 为数字类型维护本地输入状态（显示用）
+  const [numberInputs, setNumberInputs] = useState<Record<string, string>>({});
+  // 记录是否正在编辑某个字段
+  const editingRef = useRef<Record<string, boolean>>({});
 
-    if (variable.type === 'NUMBER') {
-      // 确保数值类型正确解析，空字符串使用默认值
-      const num = parseFloat(inputValue);
-      parsedValue = isNaN(num) ? variable.defaultValue : num;
+  // 当 values 变化且没有在编辑时，更新显示状态
+  useEffect(() => {
+    const updatedInputs: Record<string, string> = {};
+    variables.forEach((variable) => {
+      if (variable.type === 'NUMBER') {
+        // 如果正在编辑，不更新
+        if (editingRef.current[variable.name]) {
+          return;
+        }
+
+        const value = values[variable.name];
+        if (value !== undefined && value !== null) {
+          updatedInputs[variable.name] = String(value);
+        }
+      }
+    });
+
+    if (Object.keys(updatedInputs).length > 0) {
+      setNumberInputs((prev) => ({ ...prev, ...updatedInputs }));
+    }
+  }, [variables, values]);
+
+  const handleNumberInputChange = (variable: ReplacementVariable, inputValue: string) => {
+    // 标记为正在编辑
+    editingRef.current[variable.name] = true;
+
+    // 更新本地显示状态
+    setNumberInputs((prev) => ({
+      ...prev,
+      [variable.name]: inputValue,
+    }));
+
+    // 如果是空字符串，使用默认值
+    if (inputValue.trim() === '') {
+      onChange(variable.name, variable.defaultValue);
+      return;
     }
 
-    onChange(variable.name, parsedValue);
+    // 解析数字
+    const num = parseFloat(inputValue);
+    if (!isNaN(num)) {
+      onChange(variable.name, num);
+    }
+  };
+
+  const handleNumberInputBlur = (variable: ReplacementVariable, inputValue: string) => {
+    // 取消编辑状态
+    editingRef.current[variable.name] = false;
+
+    // 失去焦点时，标准化显示
+    const num = parseFloat(inputValue);
+    const finalValue = isNaN(num) ? variable.defaultValue : num;
+
+    setNumberInputs((prev) => ({
+      ...prev,
+      [variable.name]: String(finalValue),
+    }));
+
+    onChange(variable.name, finalValue);
+  };
+
+  const handleStringInputChange = (variable: ReplacementVariable, inputValue: string) => {
+    onChange(variable.name, inputValue);
   };
 
   const handleSelectChange = (variable: ReplacementVariable, selectedValue: string) => {
@@ -37,6 +96,18 @@ export function VariablesForm({ variables, values, onChange }: VariablesFormProp
 
   // 获取显示值
   const getDisplayValue = (variable: ReplacementVariable): string => {
+    if (variable.type === 'NUMBER') {
+      // 如果有本地输入状态，使用本地状态
+      if (numberInputs[variable.name] !== undefined) {
+        return numberInputs[variable.name];
+      }
+      // 否则使用父组件传入的值
+      const value = values[variable.name];
+      return value !== undefined && value !== null
+        ? String(value)
+        : String(variable.defaultValue);
+    }
+
     const value = values[variable.name];
     if (value === undefined || value === null) {
       return String(variable.defaultValue);
@@ -62,8 +133,10 @@ export function VariablesForm({ variables, values, onChange }: VariablesFormProp
         <Input
           label={variable.label}
           type="number"
+          step="any"
           value={getDisplayValue(variable)}
-          onChange={(e) => handleInputChange(variable, e.target.value)}
+          onChange={(e) => handleNumberInputChange(variable, e.target.value)}
+          onBlur={(e) => handleNumberInputBlur(variable, e.target.value)}
           helperText={variable.description}
         />
       );
@@ -75,7 +148,7 @@ export function VariablesForm({ variables, values, onChange }: VariablesFormProp
         label={variable.label}
         type="text"
         value={getDisplayValue(variable)}
-        onChange={(e) => handleInputChange(variable, e.target.value)}
+        onChange={(e) => handleStringInputChange(variable, e.target.value)}
         helperText={variable.description}
       />
     );
