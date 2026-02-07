@@ -134,7 +134,7 @@
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 100;
+  z-index: 98;
 }
 
 @media (max-width: 768px) {
@@ -148,13 +148,13 @@
 
   .sidebar {
     position: fixed;
-    top: 0;
+    top: 56px;
     left: 0;
     bottom: 0;
     width: 280px;
     max-width: 80vw;
     border-radius: 0;
-    z-index: 101;
+    z-index: 99;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
     overflow-y: auto;
@@ -163,10 +163,6 @@
 
   .sidebarOpen {
     transform: translateX(0);
-  }
-
-  .sidebarHeader {
-    margin-top: 0.5rem;
   }
 
   .closeBtn {
