@@ -35,7 +35,17 @@ export function ScriptDetail({ script, fromPage, fromChapter }: ScriptDetailProp
     const defaultValues: Record<string, string | number | boolean> = {};
     if (script.variables) {
       script.variables.forEach((v) => {
-        defaultValues[v.name] = v.defaultValue;
+        // 根据类型转换默认值
+        if (v.type === 'BOOLEAN') {
+          // 统一处理布尔类型：兼容 TRUE/true/True 等格式
+          defaultValues[v.name] = String(v.defaultValue).toLowerCase() === 'true';
+        } else if (v.type === 'NUMBER') {
+          defaultValues[v.name] = typeof v.defaultValue === 'number'
+            ? v.defaultValue
+            : parseFloat(String(v.defaultValue));
+        } else {
+          defaultValues[v.name] = v.defaultValue;
+        }
       });
     }
     return defaultValues;
@@ -52,7 +62,16 @@ export function ScriptDetail({ script, fromPage, fromChapter }: ScriptDetailProp
     if (!options.useVariables && script.variables) {
       const defaultValues: Record<string, string | number | boolean> = {};
       script.variables.forEach((v) => {
-        defaultValues[v.name] = v.defaultValue;
+        // 根据类型转换默认值
+        if (v.type === 'BOOLEAN') {
+          defaultValues[v.name] = String(v.defaultValue).toLowerCase() === 'true';
+        } else if (v.type === 'NUMBER') {
+          defaultValues[v.name] = typeof v.defaultValue === 'number'
+            ? v.defaultValue
+            : parseFloat(String(v.defaultValue));
+        } else {
+          defaultValues[v.name] = v.defaultValue;
+        }
       });
       setVariables(defaultValues);
     }

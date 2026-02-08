@@ -10,6 +10,7 @@ import { MdFullscreen, MdFullscreenExit } from 'react-icons/md';
 import { Card } from '@/components/Card';
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
+import { Select } from '@/components/Select';
 import { SearchableSelect } from '@/components/SearchableSelect';
 import { TextArea } from '@/components/TextArea';
 import type { AdminScriptDetail, CreateScriptRequest, VariableDefinitionInput } from '../types/admin';
@@ -96,14 +97,24 @@ const getInitialFormData = (initialData?: AdminScriptDetail) => ({
 
 const getInitialVariables = (initialData?: AdminScriptDetail): VariableDefinitionInput[] => {
   if (!initialData?.variables) return [];
-  return initialData.variables.map((v, index) => ({
-    name: v.name,
-    label: v.label,
-    type: v.type.toUpperCase() as 'NUMBER' | 'STRING' | 'BOOLEAN',
-    defaultValue: String(v.defaultValue || ''),
-    description: v.description || '',
-    sortOrder: index + 1,
-  }));
+  return initialData.variables.map((v, index) => {
+    const type = v.type.toUpperCase() as 'NUMBER' | 'STRING' | 'BOOLEAN';
+    let defaultValue = String(v.defaultValue || '');
+
+    // 规范化布尔类型的默认值：统一转换为小写 "true" 或 "false"
+    if (type === 'BOOLEAN') {
+      defaultValue = String(v.defaultValue).toUpperCase() === 'TRUE' ? 'true' : 'false';
+    }
+
+    return {
+      name: v.name,
+      label: v.label,
+      type,
+      defaultValue,
+      description: v.description || '',
+      sortOrder: index + 1,
+    };
+  });
 };
 
 function ScriptFormInner({
@@ -439,11 +450,24 @@ function ScriptFormInner({
 
                     <div className={styles.formGroup}>
                       <label className={styles.label}>默认值</label>
-                      <Input
-                        value={variable.defaultValue || ''}
-                        onChange={(e) => handleVariableChange(index, 'defaultValue', e.target.value)}
-                        placeholder="默认值"
-                      />
+                      {variable.type === 'BOOLEAN' ? (
+                        <Select
+                          value={variable.defaultValue || 'false'}
+                          options={[
+                            { label: 'True', value: 'true' },
+                            { label: 'False', value: 'false' },
+                          ]}
+                          onChange={(value) => handleVariableChange(index, 'defaultValue', value)}
+                        />
+                      ) : (
+                        <Input
+                          value={variable.defaultValue || ''}
+                          onChange={(e) => handleVariableChange(index, 'defaultValue', e.target.value)}
+                          placeholder={variable.type === 'NUMBER' ? '如：100' : '默认值'}
+                          type={variable.type === 'NUMBER' ? 'number' : 'text'}
+                          step={variable.type === 'NUMBER' ? 'any' : undefined}
+                        />
+                      )}
                     </div>
 
                     <div className={styles.formGroupFull}>

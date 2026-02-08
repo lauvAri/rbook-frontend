@@ -108,6 +108,17 @@ export function VariablesForm({ variables, values, onChange }: VariablesFormProp
         : String(variable.defaultValue);
     }
 
+    if (variable.type === 'BOOLEAN') {
+      // 对布尔类型，优先使用父组件传入的值
+      const value = values[variable.name];
+      if (value !== undefined && value !== null) {
+        // 确保布尔值正确转换为小写字符串 "true" 或 "false"
+        return value === true || String(value).toLowerCase() === 'true' ? 'true' : 'false';
+      }
+      // 使用默认值，统一转换为小写
+      return String(variable.defaultValue).toLowerCase() === 'true' ? 'true' : 'false';
+    }
+
     const value = values[variable.name];
     if (value === undefined || value === null) {
       return String(variable.defaultValue);
