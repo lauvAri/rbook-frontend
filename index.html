@@ -5,10 +5,20 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>r-book</title>
+    <!-- 预加载背景图片 -->
+    <link rel="preload" as="image" href="/bg.webp" type="image/webp">
   </head>
   <body>
     <div id="root"></div>
-    <a href="https://beian.miit.gov.cn/" target="_blank" id="beian">蜀ICP备2026005546号-1</a>
+    <div class="beian-container">
+      <div class="beian-item">
+        <img src="/wangbei.png">
+        <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51200002001152" target="_blank">川公网安备51200002001152号</a>
+      </div>
+      <div class="beian-item">
+        <a href="https://beian.miit.gov.cn/" target="_blank">蜀ICP备2026005546号-1</a>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

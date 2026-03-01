@@ -194,12 +194,33 @@ img {
 }
 
 /* 备案信息 */
-#beian {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
+.beian-container {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--surface);
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.beian-item {
   font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.beian-item a {
   color: var(--fg-subtle);
   text-decoration: none;
-  z-index: 1000;
+}
+
+.beian-item a:hover {
+  color: var(--primary);
+}
+
+.beian-item img {
+  height: 1rem;
+  width: auto;
 }

@@ -20,7 +20,7 @@
       var(--hero-overlay-start),
       var(--hero-overlay-end)
     ),
-    url('/bg.png');
+    url('/bg.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
