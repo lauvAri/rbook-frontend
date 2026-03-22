@@ -17,6 +17,7 @@ import { FileInput } from './FileInput';
 import { ExecutionResult } from './ExecutionResult';
 import rLogo from '../assets/r.png';
 import styles from './ScriptDetail.module.css';
+import { useIsAuthenticated } from '@/features/user';
 
 interface ScriptDetailProps {
   script: CodeScript;
@@ -129,6 +130,8 @@ export function ScriptDetail({ script, fromPage, fromChapter }: ScriptDetailProp
   }, [script, runOptions, variables, fileData, execute]);
 
   const canExecute = !runOptions.useFileInput || fileData?.data;
+  const isAuthenticated = useIsAuthenticated();
+  
 
   return (
     <div className={styles.container}>
@@ -154,7 +157,7 @@ export function ScriptDetail({ script, fromPage, fromChapter }: ScriptDetailProp
       </Card>
 
       {/* R 代码展示 */}
-      {script.scriptContent && (
+      {isAuthenticated && script.scriptContent && (
         <Card variant="default" padding="md">
           <CardContent>
             <div
