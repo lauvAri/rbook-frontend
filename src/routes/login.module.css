@@ -41,7 +41,7 @@
 /* 左侧背景图区域 */
 .bgSection {
   flex: 1;
-  background-image: url('/bg.png');
+  background-image: url('/bg.webp');
   background-size: cover;
   background-position: center;
   position: relative;

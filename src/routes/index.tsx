@@ -59,8 +59,8 @@ export function HomePage() {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <h1 className={styles.title}>R 语言代码执行器</h1>
-        <p className={styles.subtitle}>选择一个分析脚本，配置参数，获取执行结果</p>
+        <h1 className={styles.title}>《医学统计学》</h1>
+        <p className={styles.subtitle}>免费在线计算，无需安装软件！</p>
       </header>
 
       <div className={styles.mainContent}>
