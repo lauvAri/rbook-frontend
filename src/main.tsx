@@ -7,13 +7,16 @@ import { RouterProvider } from '@tanstack/react-router';
 import { queryClient } from '@/lib/react-query';
 import { router } from '@/router';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { AppSkeletonTheme } from '@/components/Skeleton';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ThemeProvider>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-      </QueryClientProvider>
+      <AppSkeletonTheme>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+        </QueryClientProvider>
+      </AppSkeletonTheme>
     </ThemeProvider>
   </StrictMode>,
 )

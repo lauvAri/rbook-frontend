@@ -5,6 +5,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Link, useNavigate } from '@tanstack/react-router';
 import { Card, CardContent, Button, Markdown } from '@/components';
+import Skeleton from 'react-loading-skeleton';
 import type { CodeScript } from '../types';
 
 // 用于详情页跳转的search参数类型
@@ -70,9 +71,20 @@ export function ScriptList({
 
   if (loading) {
     return (
-      <div className={styles.loading}>
-        <div className={styles.spinner} />
-        <p>加载中...</p>
+      <div className={styles.container}>
+        <div className={styles.list}>
+          {Array.from({ length: pageSize }).map((_, i) => (
+            <Card key={i} variant="default" padding="md">
+              <CardContent>
+                <div className={styles.cardHeader}>
+                  <Skeleton width="55%" height={22} />
+                  <Skeleton width={64} height={20} borderRadius={4} />
+                </div>
+                <Skeleton count={2} height={16} style={{ marginTop: 4 }} />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
     );
   }

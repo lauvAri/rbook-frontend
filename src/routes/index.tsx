@@ -13,7 +13,7 @@ import styles from './index.module.css';
 export function HomePage() {
   const navigate = useNavigate();
   const { data: scripts, isLoading } = useScripts();
-  const { data: chaptersData } = useChapters();
+  const { data: chaptersData, isLoading: chaptersLoading } = useChapters();
   const { page, chapter, search: urlSearch } = useSearch({ from: '/' });
 
   // 搜索状态管理
@@ -69,6 +69,7 @@ export function HomePage() {
           currentChapter={chapter}
           totalCount={scripts?.length || 0}
           onChapterChange={handleChapterChange}
+          loading={chaptersLoading}
         />
 
         {/* 右侧脚本列表 */}

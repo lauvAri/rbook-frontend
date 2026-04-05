@@ -4,6 +4,7 @@
 
 import { useState } from 'react';
 import { MdMenuBook, MdMenuOpen } from 'react-icons/md';
+import Skeleton from 'react-loading-skeleton';
 import styles from './ChapterNavigation.module.css';
 
 export interface ChapterNavItem {
@@ -16,6 +17,7 @@ interface ChapterNavigationProps {
   currentChapter?: string;
   totalCount: number;
   onChapterChange: (chapter?: string) => void;
+  loading?: boolean;
 }
 
 export function ChapterNavigation({
@@ -23,8 +25,29 @@ export function ChapterNavigation({
   currentChapter,
   totalCount,
   onChapterChange,
+  loading = false,
 }: ChapterNavigationProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  if (loading) {
+    return (
+      <>
+        <div className={styles.mobileChapterBtn}>
+          <Skeleton height={36} />
+        </div>
+        <aside className={styles.sidebar}>
+          <div className={styles.sidebarHeader}>
+            <Skeleton width={80} height={20} />
+          </div>
+          <nav className={styles.chapterNav}>
+            {Array.from({ length: 5 }).map((_, i) => (
+              <Skeleton key={i} height={40} style={{ marginBottom: 4, borderRadius: 6 }} />
+            ))}
+          </nav>
+        </aside>
+      </>
+    );
+  }
 
   if (chapters.length === 0) {
     return null;
